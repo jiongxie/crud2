@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.pfb.dao.BoardDao">
+	
+	<select id="getBoardList" resultType="com.spring.pfb.vo.BoardVo">
+		select * from board3 order by idx desc limit #{startNo}, #{pageSize} ;
+	</select>
+	
+	<select id="getBoardContent" resultType="com.spring.pfb.vo.BoardVo">
+		select * from board3 where idx = #{idx};
+	</select>
+	
+	<select id="getPasswordCheck" resultType="com.spring.pfb.vo.BoardVo">
+		select * from board3 where idx = #{idx} and pwd = #{pwd};
+	</select>
+	
+	<delete id="getBoardDelete">
+		delete from board3 where idx = #{idx};
+	</delete>
+	
+	<update id="setBoardUpdate">
+		update board3 set title=#{vo.title}, name=#{vo.name}, content=#{vo.content} where idx=#{vo.idx};
+	</update>
+	
+	<select id="totBoardRecCnt" resultType="int">
+		select count(*) from board3;
+	</select>
+</mapper>
