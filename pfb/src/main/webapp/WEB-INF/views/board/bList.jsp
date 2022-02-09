@@ -25,18 +25,25 @@
 			<td><h2>BList</h2></td>
 		</tr>
 	</div>
+	<div style="float:left;">
+		<input type="button" value="Input" style="width: 50px;" onclick="location.href='${ctp}/board/bInput?pag=${pageVo.pag }&pageSize=${pageVo.pageSize }';">
+	</div>
 	<table>
 		<tr class="a">
+			<th>Number</th>
 			<th>Title</th>
 			<th>Name</th>
 			<th>Content</th>
 		</tr>
+		<c:set var="num" value="${pageVo.curScrNo }"/>
 		<c:forEach var="vo" items="${vos }">
 		<tr class="a">
+			<td>${num }</td>
 			<td><a href="${ctp }/board/bContent?idx=${vo.idx }&pag=${pageVo.pag}&pageSize=${pageVo.pageSize}">${vo.title }</a></td>
 			<td>${vo.name }</td>
 			<td>${vo.content }</td>
 		</tr>
+		<c:set var="num" value="${num-1 }"/>
 		</c:forEach>
 	</table>
 	<div style="text-align: center;">

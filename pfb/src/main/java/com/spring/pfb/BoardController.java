@@ -43,10 +43,25 @@ public class BoardController {
 		
 		System.out.println("pageVo.blockSize: " + pageVo.getBlockSize());
 		System.out.println("pageVo.totPage: " + pageVo.getTotPage());
+		System.out.println("curScrNo : " + pageVo.getCurScrNo());
 		
 		return "board/bList";
 	}
 	
+	
+	@RequestMapping(value="/bInput", method=RequestMethod.GET)
+	public String bInputGet(HttpServletRequest request, Model model) {
+		
+		int totRecCnt = boardService.totBoardRecCnt();
+		int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
+		int pageSize = request.getParameter("pageSize") == null ? 5 : Integer.parseInt(request.getParameter("pageSize"));
+			
+		PageVo pageVo = pagination.pagination(pag, pageSize);
+		
+		model.addAttribute("pageVo", pageVo);
+		
+		return "board/bInput";
+	}
 	
 	@RequestMapping(value="/bContent", method=RequestMethod.GET)
 	public String bContentGet(HttpServletRequest request, Model model) {
