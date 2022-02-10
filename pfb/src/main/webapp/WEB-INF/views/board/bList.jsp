@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>bList.jsp</title>
+<script>
+	function pageSizeCheck() {
+		var pageSize = pageSize = pageForm.pageSize.value;
+		location.href = "${ctp}/board/bList?pag=${pageVo.pag}&pageSize="+pageSize;
+		
+	}
+</script>
 <style>
 	.a {
 		text-align: center;
@@ -25,9 +32,23 @@
 			<td><h2>BList</h2></td>
 		</tr>
 	</div>
-	<div style="float:left;">
-		<input type="button" value="Input" style="width: 50px;" onclick="location.href='${ctp}/board/bInput?pag=${pageVo.pag }&pageSize=${pageVo.pageSize }';">
-	</div>
+	<table>
+		<tr>
+			<td style="text-align: left; border: none;">
+				<input type="button" value="Input" style="width: 50px;" onclick="location.href='${ctp}/board/bInput?pag=${pageVo.pag }&pageSize=${pageVo.pageSize }';">
+			</td>
+			<td style="text-align : right; border: none;">
+				<form name="pageForm">
+					<select name="pageSize" onchange="pageSizeCheck()">
+						<option value="5" <c:if test="${pageVo.pageSize == 5 }">selected</c:if>>5건</option>
+						<option value="10" <c:if test="${pageVo.pageSize == 10 }">selected</c:if>>10건</option>
+						<option value="15" <c:if test="${pageVo.pageSize == 15 }">selected</c:if>>15건</option>
+						<option value="20" <c:if test="${pageVo.pageSize == 20 }">selected</c:if>>20건</option>
+					</select>
+				</form>
+			</td>
+		</tr>
+	</table>
 	<table>
 		<tr class="a">
 			<th>Number</th>
