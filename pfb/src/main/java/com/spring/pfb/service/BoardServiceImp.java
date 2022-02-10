@@ -51,4 +51,10 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.getBoardList(startNo, pageSize);
 	}
 
+	@Override
+	public void setBoardInput(BoardVo vo) {
+
+		boardDao.setBoardInput(vo);
+	}
+
 }

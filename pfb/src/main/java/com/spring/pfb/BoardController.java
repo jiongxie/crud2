@@ -63,6 +63,33 @@ public class BoardController {
 		return "board/bInput";
 	}
 	
+	
+	@RequestMapping(value="/bInput", method=RequestMethod.POST)
+	public String bInputPost(BoardVo vo, HttpServletRequest request, Model model) {
+		
+		int totRecCnt = boardService.totBoardRecCnt();
+		int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
+		int pageSize = request.getParameter("pageSize") == null ? 5 : Integer.parseInt(request.getParameter("pageSize"));
+		
+		PageVo pageVo = pagination.pagination(pag, pageSize);
+		
+		
+		boardService.setBoardInput(vo);
+		model.addAttribute("pageVo", pageVo);
+		
+		msgFlag = "bInputOk$pag="+pag+"&pageSize="+pageSize;
+		
+		
+		
+		
+		return "redirect:/msg/" + msgFlag;
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/bContent", method=RequestMethod.GET)
 	public String bContentGet(HttpServletRequest request, Model model) {
 		

@@ -19,4 +19,6 @@ public interface BoardService {
 
 	public List<BoardVo> getBoardList(int startNo, int pageSize);
 
+	public void setBoardInput(BoardVo vo);
+
 }

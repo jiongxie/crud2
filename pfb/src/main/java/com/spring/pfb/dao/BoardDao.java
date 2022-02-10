@@ -21,4 +21,6 @@ public interface BoardDao {
 
 	public List<BoardVo> getBoardList(@Param("startNo") int startNo,@Param("pageSize") int pageSize);
 
+	public void setBoardInput(@Param("vo") BoardVo vo);
+
 }

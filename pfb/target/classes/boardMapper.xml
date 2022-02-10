@@ -25,4 +25,8 @@
 	<select id="totBoardRecCnt" resultType="int">
 		select count(*) from board3;
 	</select>
+	
+	<insert id="setBoardInput">
+		insert into board3 values (default, #{vo.title}, #{vo.name}, #{vo.content}, #{vo.pwd});
+	</insert>
 </mapper>
