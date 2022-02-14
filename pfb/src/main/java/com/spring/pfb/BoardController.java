@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.pfb.pagination.PageVo;
 import com.spring.pfb.pagination.Pagination;
@@ -84,8 +85,6 @@ public class BoardController {
 		
 		return "redirect:/msg/" + msgFlag;
 	}
-	
-	
 	
 	
 	
@@ -169,6 +168,18 @@ public class BoardController {
 		}
 		
 		return "redirect:/msg/" + msgFlag;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/bADelete", method=RequestMethod.GET)
+	public int baDeleteGet(int idx) {
+		
+		
+		boardService.getBoardDelete(idx);
+		System.out.println("ajax idx : " + idx);
+		
+		return 1;
 	}
 	
 	

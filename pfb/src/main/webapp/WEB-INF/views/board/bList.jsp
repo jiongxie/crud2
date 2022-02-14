@@ -7,11 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>bList.jsp</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	function pageSizeCheck() {
 		var pageSize = pageSize = pageForm.pageSize.value;
 		location.href = "${ctp}/board/bList?pag=${pageVo.pag}&pageSize="+pageSize;
 		
+	}
+	function ADel(idx) {
+		var ans = confirm("해당 글을 삭제할까요?");
+		if(!ans) {
+			return false;
+		}
+		var query = {idx : idx};
+		$.ajax({
+			url : "${ctp}/board/bADelete",
+			type : "get",
+			data : query,
+			success : function(data) {
+				if(data == 1) {
+					location.reload();
+				}
+			}
+		});
 	}
 </script>
 <style>
@@ -37,6 +55,18 @@
 			<td style="text-align: left; border: none;">
 				<input type="button" value="Input" style="width: 50px;" onclick="location.href='${ctp}/board/bInput?pag=${pageVo.pag }&pageSize=${pageVo.pageSize }';">
 			</td>
+			<%-- 
+			<td style="text-align: center; border: none;">
+				<select name="search" method="get" action="${ctp }/board/bSearch">
+					<option value="title" selected>Title</option>
+					<option value="name">Name</option>
+					<option value="content">Content</option>
+				</select>
+				<input type="text" name="searchString"/>
+				<input type="hideen" name="pag" value="${pag }"/>
+				<input type="hidden" name="pageSize" value="${pageSize }"/>
+			</td>
+			 --%>
 			<td style="text-align : right; border: none;">
 				<form name="pageForm">
 					<select name="pageSize" onchange="pageSizeCheck()">
@@ -55,6 +85,7 @@
 			<th>Title</th>
 			<th>Name</th>
 			<th>Content</th>
+			<th>Admin</th>
 		</tr>
 		<c:set var="num" value="${pageVo.curScrNo }"/>
 		<c:forEach var="vo" items="${vos }">
@@ -63,6 +94,7 @@
 			<td><a href="${ctp }/board/bContent?idx=${vo.idx }&pag=${pageVo.pag}&pageSize=${pageVo.pageSize}">${vo.title }</a></td>
 			<td>${vo.name }</td>
 			<td>${vo.content }</td>
+			<td><a href="javascript:ADel(${vo.idx })">X</a></td>
 		</tr>
 		<c:set var="num" value="${num-1 }"/>
 		</c:forEach>
