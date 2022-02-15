@@ -29,4 +29,8 @@
 	<insert id="setBoardInput">
 		insert into board3 values (default, #{vo.title}, #{vo.name}, #{vo.content}, #{vo.pwd});
 	</insert>
+	
+	<select id="getAPasswordCheck" resultType="com.spring.pfb.vo.MemberVo">
+		select * from member where mid = #{mid} and pwd = #{pwd};
+	</select>
 </mapper>

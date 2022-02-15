@@ -11,3 +11,12 @@ insert into board3 values (default, '첫 게시','변형섭','안녕하세요...
 drop table board3;
 select * from board3 order by idx desc;
 select count(*) from board3;
+
+create table member (
+	idx int not null auto_increment,
+	mid varchar(20),
+	pwd varchar(20),
+	primary key(idx)
+);
+ insert into member values(default, 'admin', '1234');
+ select * from member;

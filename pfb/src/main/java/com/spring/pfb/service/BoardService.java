@@ -3,6 +3,7 @@ package com.spring.pfb.service;
 import java.util.List;
 
 import com.spring.pfb.vo.BoardVo;
+import com.spring.pfb.vo.MemberVo;
 
 public interface BoardService {
 
@@ -20,5 +21,7 @@ public interface BoardService {
 	public List<BoardVo> getBoardList(int startNo, int pageSize);
 
 	public void setBoardInput(BoardVo vo);
+
+	public MemberVo getAPasswordCheck(String mid, String pwd);
 
 }

@@ -13,6 +13,15 @@ public class MsgController {
 	public String MsgGet(@PathVariable String msgFlag, Model model) {
 		
 		
+		
+		if(msgFlag.equals("baLoginNo")) {
+			model.addAttribute("msg", "관리자 로그인 실패하였습니다.");
+			model.addAttribute("url", "board/bLogin");
+		}
+		if(msgFlag.equals("baLoginOk")) {
+			model.addAttribute("msg", "관리자 로그인 성공");
+			model.addAttribute("url", "board/bList");
+		}
 		if(msgFlag.substring(0, 9).equals("bDeleteOk")) {
 			model.addAttribute("msg", "게시글이 삭제되었습니다.");
 			model.addAttribute("url", "board/bList?"+msgFlag.substring(10));

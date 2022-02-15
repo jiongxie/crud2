@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.pfb.dao.BoardDao;
 import com.spring.pfb.vo.BoardVo;
+import com.spring.pfb.vo.MemberVo;
 
 @Service
 public class BoardServiceImp implements BoardService {
@@ -55,6 +56,12 @@ public class BoardServiceImp implements BoardService {
 	public void setBoardInput(BoardVo vo) {
 
 		boardDao.setBoardInput(vo);
+	}
+
+	@Override
+	public MemberVo getAPasswordCheck(String mid, String pwd) {
+
+		return boardDao.getAPasswordCheck(mid, pwd);
 	}
 
 }
