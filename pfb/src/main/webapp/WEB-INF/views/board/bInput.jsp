@@ -12,6 +12,9 @@
 	 var name = myform.name.value;
 	 var content = myform.content.value;
 	 var pwd = myform.pwd.value;
+	 var file = myform.file.value;
+	 var maxSize = 1024 * 1024 * 10;
+	 var fileSize = document.getElementById("file").files[0].size;
 	 
 	 if(title == "") {
 		 alert("제목을 입력하세요.");
@@ -28,6 +31,10 @@
 	 else if(pwd == ""){
 		 alert("비밀번호를 입력하세요.");
 		 myform.pwd.focus();
+	 }
+	 else if(fileSize > maxSize) {
+		 alert("업로드할 파일의 최대용량은 10MByte 이내입니다.");
+		 return false;
 	 }
 	 else {
 		 myform.submit();
@@ -58,7 +65,7 @@
 			<td><h2>bInput</h2></td>
 		</tr>
 	</div>
-	<form name="myform" method="post">
+	<form name="myform" method="post" enctype="multipart/form-data">
 		<table>
 			<tr class="a">
 				<th>Title</th>
@@ -71,6 +78,10 @@
 			<tr class="a">
 				<th>Content</th>
 				<td><textarea name="content" rows="30px" cols="200px"></textarea></td>
+			</tr>
+			<tr class="a">
+				<th>File</th>
+				<td><input multiple="multiple" type="file" name="file" id="file" accept=".jpg, .png"/></td>
 			</tr>
 			<tr class="a">
 				<th>Password</th>

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mysql.cj.Session;
 import com.spring.pfb.pagination.PageVo;
@@ -69,7 +70,7 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/bInput", method=RequestMethod.POST)
-	public String bInputPost(BoardVo vo, HttpServletRequest request, Model model) {
+	public String bInputPost(BoardVo vo, Model model, MultipartHttpServletRequest mfile, HttpServletRequest request) {
 		
 		int totRecCnt = boardService.totBoardRecCnt();
 		int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
@@ -78,7 +79,8 @@ public class BoardController {
 		PageVo pageVo = pagination.pagination(pag, pageSize);
 		
 		
-		boardService.setBoardInput(vo);
+		boardService.setBoardInput(mfile, vo);
+		System.out.println("파일업로드단");
 		model.addAttribute("pageVo", pageVo);
 		
 		msgFlag = "bInputOk$pag="+pag+"&pageSize="+pageSize;

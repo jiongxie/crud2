@@ -27,7 +27,7 @@
 	</select>
 	
 	<insert id="setBoardInput">
-		insert into board3 values (default, #{vo.title}, #{vo.name}, #{vo.content}, #{vo.pwd});
+		insert into board3 values (default, #{vo.title}, #{vo.name}, #{vo.content}, #{vo.pwd}, #{vo.fname}, #{vo.rfname});
 	</insert>
 	
 	<select id="getAPasswordCheck" resultType="com.spring.pfb.vo.MemberVo">

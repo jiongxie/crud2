@@ -20,3 +20,7 @@ create table member (
 );
  insert into member values(default, 'admin', '1234');
  select * from member;
+ 
+ alter table board3 add fname varchar(100);
+ alter table board3 add rfname varchar(100);
+ 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% pageContext.setAttribute("newLine","\n"); %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -57,6 +58,10 @@
 		<tr class="a">
 			<th>Content</th>
 			<td>${vo.content }</td>
+		</tr>
+		<tr class="a">
+			<th>File</th>
+			<td><img src="${ctp }/resources/bfile/${vo.rfname}" width="200px" height="180px"/></td>
 		</tr>
 		<tr class="a">
 			<th>Password</th>

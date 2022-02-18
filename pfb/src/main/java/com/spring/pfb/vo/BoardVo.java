@@ -7,7 +7,8 @@ public class BoardVo {
 	private String name;
 	private String content;
 	private String pwd;
-	
+	private String fname;
+	private String rfname;
 	public int getIdx() {
 		return idx;
 	}
@@ -38,13 +39,25 @@ public class BoardVo {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getRfname() {
+		return rfname;
+	}
+	public void setRfname(String rfname) {
+		this.rfname = rfname;
+	}
 	@Override
 	public String toString() {
 		return "BoardVo [idx=" + idx + ", title=" + title + ", name=" + name + ", content=" + content + ", pwd=" + pwd
-				+ "]";
+		    + ", fname=" + fname + ", rfname=" + rfname + "]";
 	}
 	
+
 	
 	
 	
